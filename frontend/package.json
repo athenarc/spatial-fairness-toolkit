@@ -1,0 +1,40 @@
+{
+  "name": "ai-dapt-core-fe",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview",
+    "codegen": "openapi-zod-client http://localhost:8000/openapi.json -o src/api/client.ts --export-schemas -b /api"
+  },
+  "dependencies": {
+    "@floating-ui/dom": "^1.7.2",
+    "@headlessui/vue": "1.7.23",
+    "@heroicons/vue": "2.2.0",
+    "@zodios/core": "^10.9.6",
+    "autoprefixer": "^10.4.21",
+    "axios": "^1.9.0",
+    "keycloak-js": "^26.2.0",
+    "papaparse": "^5.5.3",
+    "postcss": "^8.5.4",
+    "radix-vue": "^1.9.17",
+    "tailwindcss": "3.4.17",
+    "vue": "^3.5.13",
+    "vue-router": "4",
+    "zod": "^4.1.5"
+  },
+  "devDependencies": {
+    "@types/connect-history-api-fallback": "^1.5.4",
+    "@types/node": "^24.0.12",
+    "@types/papaparse": "^5.3.16",
+    "@vitejs/plugin-vue": "^5.2.3",
+    "@vue/tsconfig": "^0.7.0",
+    "connect-history-api-fallback": "^2.0.0",
+    "openapi-zod-client": "^1.18.3",
+    "typescript": "~5.8.3",
+    "vite": "^6.3.5",
+    "vue-tsc": "^2.2.8"
+  }
+}

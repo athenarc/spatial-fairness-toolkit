@@ -1,0 +1,40 @@
+my_env/
+results/
+backend/app/services/spatial_bias/data/
+plots/
+.DS_Store
+__pycache__/
+.ipynb_checkpoints/
+spatial-bias-env/
+final_budget_metrics.csv
+.env
+
+
+
+# copied from frontend .gitignore
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+.env
+
+# Editor directories and files
+.vs
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

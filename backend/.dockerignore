@@ -1,0 +1,18 @@
+# Ignore data folder
+app/services/spatial_bias/data/
+app/services/spatial_bias/Examples/
+
+# Ignore notebooks
+*.ipynb
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+
+# Ignore local config or secrets
+.env
+.gurobi.lic
+
+# Ignore readme and zip
+README.md
+*.zip
