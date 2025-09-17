@@ -1,8 +1,15 @@
-# Spatial Bias Detection & Mitigation Platform
+# Spatial Fairness Toolkit
 
-A platform for auditing and mitigating spatial bias in decision outputs.
+A toolkit for auditing and mitigating spatial bias in decision outputs.
 
 It supports detecting geographic disparities in predicted or observed outcomes of interest, visualizing fairness metrics on maps, and applying mitigation strategies such as relabeling and threshold adjustment.
+
+## References
+This toolkit implements methods from the following research papers:
+
+- 📄 **Auditing methods**: [*Auditing for Spatial Fairness*](https://openproceedings.org/2023/conf/edbt/3-paper-122.pdf)  
+- 📄 **Mitigation methods**: *PROMIS: A Post-Processing Framework for Mitigating Spatial Bias* (to appear in ACM SIGSPATIAL 2025)
+
 
 ## Key Features
 
