@@ -4,12 +4,20 @@ A toolkit for auditing and mitigating spatial bias in decision outputs.
 
 It supports detecting geographic disparities in predicted or observed outcomes of interest, visualizing fairness metrics on maps, and applying mitigation strategies such as relabeling and threshold adjustment.
 
-## References
-This toolkit implements methods from the following research papers:
-
-- 📄 **Auditing methods**: [*Auditing for Spatial Fairness*](https://openproceedings.org/2023/conf/edbt/3-paper-122.pdf)  
-- 📄 **Mitigation methods**: *PROMIS: A Post-Processing Framework for Mitigating Spatial Bias* (to appear in ACM SIGSPATIAL 2025)
-
+## Table of Contents
+- [Key Features](#key-features)
+- [Architecture & Tech Stack](#architecture--tech-stack)
+- [Quick Start](#quick-start)
+  - [Run Locally](#run-locally)
+  - [Run with Docker](#run-with-docker)
+- [Managing the Conda Environment](#managing-the-conda-environment)
+- [Using the User Interface](#using-the-user-interface)
+  - [Spatial Bias Detection](#spatial-bias-detection)
+  - [Spatial Bias Mitigation (Relabeling)](#spatial-bias-mitigation-relabeling)
+  - [Spatial Bias Mitigation (Decision Bounaries Adjustement)](#spatial-bias-mitigation-decision-bounaries-adjustement)
+- [REST API Reference](#rest-api-reference)
+- [License](#license)
+- [References](#references)
 
 ## Key Features
 
@@ -64,8 +72,20 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 
 
 #### 3 Frontend
+Open a new terminal.
 
-Create a .env file in the root of the project.
+```bash
+# From the root, navigate to frontend
+cd frontend
+
+# Install UI dependencies (first run only)
+pnpm install
+
+# Run the frontend
+pnpm dev
+```
+
+The .env file includes configuration for Keycloak authentication and the backend API:
 ```env
 # Enable or disable Keycloak auth
 VITE_USE_KEYCLOAK=false
@@ -83,20 +103,6 @@ VITE_API_BASE_URL=http://localhost:8000
 VITE_BASE_URL=
 ```
 
-Open a new terminal.
-
-```bash
-# From the root, navigate to frontend
-cd frontend
-
-# Install UI dependencies (first run only)
-pnpm install
-
-# Run the frontend
-pnpm dev
-
-```
-
 ### Run with Docker
 
 The first run will need to build the container:
@@ -108,7 +114,6 @@ To run, without rebuild:
 ```bash
 docker compose up
 ```
-
 
 
 ## Managing the Conda Environment
@@ -137,7 +142,7 @@ Modes:
 
 #### Spatial Bias Detection
 1. **Upload Data (.json)**. If no input is provided, a toy example is preloaded.
-<!-- ```bash
+```bash
 {
   "indiv_info": [                   // list with a record per instance
     {
@@ -154,11 +159,11 @@ Modes:
     }
   ] | null
 }
-``` -->
+``` 
 2. **Configure Audit Settings**
-- Fairness Notion: Equal Opportunity (True Positive Rates) or Statistical Parity (Positive Rates)
-- Alternate Worlds: Number of Monte Carlo samples
-- Significance Level: Confidence threshold for statistical tests
+- `Fairness Notion`: Equal Opportunity (True Positive Rates) or Statistical Parity (Positive Rates)
+- `Alternate Worlds`: Number of Monte Carlo samples
+- `Significance Level`: Confidence threshold for statistical tests
 
 3. **Click `Perform Audit`**
 
@@ -172,13 +177,13 @@ Modes:
 #### Spatial Bias Mitigation (Relabeling)
 1. **Upload Data (.json)**. Same format as Audit mode
 
-2. **Configure Audit Settings**
+2. **Configure Settings**
 
 - Audit settings (as above), plus:
-  - Budget Constraint: The maximum number of flips allowed.
-  - Positive Rate Change Tolerance: Max deviation from original positive rate.
-  - Approximate Solution: Whether to use approximation.
-  - Work Limit:  Limits the work unit (approximately one second of computation per unit on a single thread)
+  - `Budget Constraint`: The maximum number of flips allowed.
+  - `Positive Rate Change Tolerance`: Max deviation from original positive rate.
+  - `Approximate Solution`: Whether to use approximation.
+  - `Work Limit`:  Limits the work unit (approximately one second of computation per unit on a single thread)
 
 3. **Click `Perform Mitigation`**
 
@@ -194,7 +199,7 @@ Modes:
 #### Spatial Bias Mitigation (Decision Bounaries Adjustement)
 
 1. **Upload Data (.json)**. If no input is provided, a toy example is preloaded.
-<!-- ```bash
+```bash
 {
   "fit_indiv_info": [               // list with a record per instance
     {
@@ -222,18 +227,18 @@ Modes:
     }
   ] | null
 }
-``` -->
+``` 
 
 2. **Configure Settings**
 - Mitigation (relabeling) settings, plus:
-  - Base Model Threshold: Original threshold used by the model (e.g., 0.5).
+  - `Base Model Threshold`: Original threshold used by the model (e.g., 0.5).
 
 3. **Click `Perform Mitigation`**
 
 4. **Results**
-Everything from the Relabeling mode, plus:
-- Per-Region Threshold Bar Plot pre/post mitigation: Visualizes thresholds per region with bias-based coloring
-- Adjusted Thresholds per Region: Table with the new thresholds, and a tie-breaking probability per region, which if != -1, is used to classify an instance in case its probability equals the threshold.
+- Everything from the Relabeling mode, plus:
+  - Per-Region Threshold Bar Plot pre/post mitigation: Visualizes thresholds per region with bias-based coloring
+  - Adjusted Thresholds per Region: Table with the new thresholds, and a tie-breaking probability per region, which if != -1, is used to classify an instance in case its probability equals the threshold.
 
 
 
@@ -248,3 +253,9 @@ Everything from the Relabeling mode, plus:
 ## License
 
 Apache 2.0.
+
+## References
+This toolkit implements methods from the following research papers:
+
+- 📄 **Auditing methods**: [*Auditing for Spatial Fairness*](https://openproceedings.org/2023/conf/edbt/3-paper-122.pdf)  
+- 📄 **Mitigation methods**: *PROMIS: A Post-Processing Framework for Mitigating Spatial Bias* (to appear in ACM SIGSPATIAL 2025)
